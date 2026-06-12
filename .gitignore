@@ -1,0 +1,23 @@
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Build
+target/
+bin/
+*.class
+
+# Maven
+*.jar
+*.war
+pom.xml.tag
+pom.xml.releaseBackup
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test Reports
+test-output/
