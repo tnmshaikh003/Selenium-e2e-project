@@ -19,7 +19,7 @@ public class BaseTest {
 
     public BaseTest() throws IOException {
         prop = new Properties();
-        FileInputStream ip = new FileInputStream("config.properties");
+        FileInputStream ip = new FileInputStream("Config\\config.properties");
         prop.load(ip);
     }
 
