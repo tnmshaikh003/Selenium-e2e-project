@@ -10,21 +10,30 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.BeforeMethod;
+
+
+import com.selenium.e2e.project.Util.ParseJson;
+
 import org.testng.annotations.AfterMethod;
 
 public class BaseTest {
 
     public static Properties prop;
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    String env;
+    
 
     public BaseTest() throws IOException {
         prop = new Properties();
-        FileInputStream ip = new FileInputStream("Config\\config.properties");
+         env = ParseJson.getEnvironment();
+        String testDataPath = ParseJson.getTestDataPath(env);
+        //String 
+        FileInputStream ip = new FileInputStream(testDataPath);
         prop.load(ip);
     }
 
     @BeforeMethod
-    public void initialization() {
+    public void initialization() throws Exception {
         String browserName = prop.getProperty("browserName");
         if (browserName.equalsIgnoreCase("Chrome")) {
             driver.set(new ChromeDriver());
@@ -36,7 +45,8 @@ public class BaseTest {
 
             driver.set(new FirefoxDriver());
         }
-        driver.get().get(prop.getProperty("url"));
+    
+        driver.get().get((ParseJson.getBaseUrl(env)));
         driver.get().manage().window().maximize();
         driver.get().manage().deleteAllCookies();
         driver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));

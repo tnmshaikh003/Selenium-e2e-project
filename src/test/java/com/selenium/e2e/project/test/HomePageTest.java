@@ -26,12 +26,7 @@ public class HomePageTest extends BaseTest{
         hp.selectDropdown();
         hp.clickOnHamBtn();
         hp.clickOnAbt();
-        try {
-            Thread.sleep(10000);
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
-        
+       
         
     }
    
