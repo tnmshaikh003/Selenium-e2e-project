@@ -55,4 +55,18 @@ public class ParseJson{
         return null;
     }
 
+     public static  String getDefaultBrowser(){
+
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            Config config = mapper.readValue(new File("Config/config.json"), Config.class);
+            return config.getDefaultBrowser();
+         
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        
+        }
+      
+    }
+
 }

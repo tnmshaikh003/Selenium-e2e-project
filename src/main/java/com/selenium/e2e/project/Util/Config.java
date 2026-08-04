@@ -5,6 +5,7 @@ import java.util.List;
 public class Config {
 
     private String defaultEnviroment;
+    private String defaultBrowser;
     private List<Environment> environment;
 
     public String getDefaultEnviroment() {
@@ -13,6 +14,14 @@ public class Config {
 
     public List<Environment> getEnvironment() {
         return environment;
+    }
+
+      public String getDefaultBrowser() {
+        return defaultBrowser;
+    }
+
+    public void setDefaultBrowser(String defaultBrowser) {
+        this.defaultBrowser = defaultBrowser;
     }
 
     public void setDefaultEnviroment(String defaultEnviroment) {

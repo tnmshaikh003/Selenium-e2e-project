@@ -19,13 +19,15 @@ import org.testng.annotations.AfterMethod;
 public class BaseTest {
 
     public static Properties prop;
+
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     String env;
-    
+    String browserName;
 
     public BaseTest() throws IOException {
         prop = new Properties();
-         env = ParseJson.getEnvironment();
+        env = ParseJson.getEnvironment();
+        browserName = ParseJson.getDefaultBrowser();
         String testDataPath = ParseJson.getTestDataPath(env);
         //String 
         FileInputStream ip = new FileInputStream(testDataPath);
@@ -34,7 +36,6 @@ public class BaseTest {
 
     @BeforeMethod
     public void initialization() throws Exception {
-        String browserName = prop.getProperty("browserName");
         if (browserName.equalsIgnoreCase("Chrome")) {
             driver.set(new ChromeDriver());
         }
