@@ -5,12 +5,12 @@
         {
             "name": "uat",
             "baseUrl": "https://www.saucedemo.com",
-            "testDataPath": "Config/config_uat.properties"
+            "testDataPath": "src/test/resources/config_uat.properties"
         },
         {
             "name": "prod",
             "baseUrl": "https://www.saucedemo.com",
-            "testDataPath": "Config/config_prod.properties"
+            "testDataPath": "src/test/resources/config_prod.properties"
         }
     ]
 }

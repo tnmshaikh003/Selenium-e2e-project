@@ -5,6 +5,7 @@
         <classes>
             <class name="com.selenium.e2e.project.test.LoginTest" />
             <class name="com.selenium.e2e.project.test.HomePageTest" />
+            <class name="com.selenium.e2e.project.test.CartTest" />
         </classes>
     </test>
 </suite>
