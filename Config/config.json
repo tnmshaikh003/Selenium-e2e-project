@@ -1,6 +1,6 @@
 {
     "defaultEnviroment": "prod",
-    "defaultBrowser":"Chrome",
+    "defaultBrowser":"Edge",
     "environment": [
         {
             "name": "uat",

@@ -33,7 +33,7 @@ public class HomePage  {
     private WebDriverWait wait;
 
     public HomePage(WebDriver driver){
-        this.driver=driver;
+        this.driver = driver;
         PageFactory.initElements(driver, this);
         driverUtil = new DriverUtil(driver);
     }

@@ -1,7 +1,9 @@
 package com.selenium.e2e.project.Util;
 
 import java.time.Duration;
+import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,6 +21,29 @@ public  class DriverUtil{
 
     public  void click(WebElement wl){
         try {
+            wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
+            wait.until(ExpectedConditions.elementToBeClickable(wl));
+            wl.click();
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.getMessage();
+        }
+    }
+
+    public List<WebElement> getElements(By locator){
+
+       try{ 
+       List<WebElement> wl= this.driver.findElements(locator);
+       return wl;
+       }catch(Exception e){
+         e.getMessage();
+       }
+       return null;
+    }
+
+    public void click(By locator) {
+        try {
+            WebElement wl = driver.findElement(locator);
             wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
             wait.until(ExpectedConditions.elementToBeClickable(wl));
             wl.click();

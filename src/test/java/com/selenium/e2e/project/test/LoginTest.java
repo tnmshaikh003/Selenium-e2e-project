@@ -16,14 +16,13 @@ public class LoginTest extends BaseTest{
     }
 
 
-    @Test
+    @Test(description = "Login with valid credential")
     public void loginTest() {
         LoginPage lp = new LoginPage(driver.get());
         Assert.assertTrue(lp.navigateToSwagLab());
         lp.enterUserName(prop.getProperty("userName"));
         lp.enterPassword(prop.getProperty("password"));
        Assert.assertTrue( lp.clickOnLogIn().isHeaderDisplayed());
-    
         
     }
    
