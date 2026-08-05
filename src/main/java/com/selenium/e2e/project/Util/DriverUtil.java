@@ -6,20 +6,21 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public  class DriverUtil{
-    
-    private  WebDriver driver;
-    private  WebDriverWait wait;
-    private  final int TIMEOUT = 20;
+public class DriverUtil {
 
-    public DriverUtil(WebDriver driver){
+    private WebDriver driver;
+    private WebDriverWait wait;
+    private final int TIMEOUT = 20;
+
+    public DriverUtil(WebDriver driver) {
         this.driver = driver;
     }
 
-    public  void click(WebElement wl){
+    public void click(WebElement wl) {
         try {
             wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
             wait.until(ExpectedConditions.elementToBeClickable(wl));
@@ -30,15 +31,15 @@ public  class DriverUtil{
         }
     }
 
-    public List<WebElement> getElements(By locator){
+    public List<WebElement> getElements(By locator) {
 
-       try{ 
-       List<WebElement> wl= this.driver.findElements(locator);
-       return wl;
-       }catch(Exception e){
-         e.getMessage();
-       }
-       return null;
+        try {
+            List<WebElement> wl = this.driver.findElements(locator);
+            return wl;
+        } catch (Exception e) {
+            e.getMessage();
+        }
+        return null;
     }
 
     public void click(By locator) {
@@ -53,19 +54,31 @@ public  class DriverUtil{
         }
     }
 
-    public String  getText(WebElement wl){
-        String text ;
-         try {
+    public String getText(WebElement wl) {
+        String text;
+        try {
             wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
             wait.until(ExpectedConditions.visibilityOf(wl));
-           text= wl.getText();
-            
+            text = wl.getText();
+
         } catch (Exception e) {
             // TODO: handle exception
-           text= e.getMessage();
+            text = e.getMessage();
         }
         return text;
     }
 
+    public void hoverOnElement(WebElement wl){
+        try{
+            wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
+            wait.until(ExpectedConditions.visibilityOf(wl));
+            Actions action = new Actions(driver);
+            action.moveToElement(wl).build().perform();
+            
+            
+        }catch(Exception e){
+            e.getMessage();
+        }
+    }
 
 }

@@ -1,24 +1,21 @@
 package com.selenium.e2e.project.page;
 
-import java.time.Duration;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import com.selenium.e2e.project.Util.DriverUtil;
 
 
 
-public class HomePage  {
+public class HomePage extends DriverUtil {
 
     @FindBy(xpath="//*[contains(text(),'Products')]")
     WebElement headerText;
 
-    WebDriver driver;
     DriverUtil driverUtil;
 
     @FindBy(className = "product_sort_container")
@@ -30,10 +27,9 @@ public class HomePage  {
     @FindBy(id ="about_sidebar_link")
     WebElement aboutLink;
 
-    private WebDriverWait wait;
 
     public HomePage(WebDriver driver){
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver, this);
         driverUtil = new DriverUtil(driver);
     }
@@ -60,7 +56,7 @@ public class HomePage  {
         }
     }
     public void clickOnAbt(){
-        driverUtil.click(aboutLink);
+       this. driverUtil.click(aboutLink);
         
     }
 
