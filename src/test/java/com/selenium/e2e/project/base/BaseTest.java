@@ -7,12 +7,15 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.BeforeMethod;
 
-
 import com.selenium.e2e.project.Util.ParseJson;
+
 
 import org.testng.annotations.AfterMethod;
 
@@ -23,31 +26,49 @@ public class BaseTest {
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     String env;
     String browserName;
+    boolean isHeadless;
 
     public BaseTest() throws IOException {
         prop = new Properties();
         env = ParseJson.getEnvironment();
         browserName = ParseJson.getDefaultBrowser();
+        isHeadless = ParseJson.isHeadless();
         String testDataPath = ParseJson.getTestDataPath(env);
-        //String 
+        // String
         FileInputStream ip = new FileInputStream(testDataPath);
         prop.load(ip);
     }
 
     @BeforeMethod
     public void initialization() throws Exception {
-        if (browserName.equalsIgnoreCase("Chrome")) {
-            driver.set(new ChromeDriver());
-        }
-        else if(browserName.equalsIgnoreCase("Edge")){
-            driver.set(new EdgeDriver() );
-            }
-         else {
 
-            driver.set(new FirefoxDriver());
+
+        if (browserName.equalsIgnoreCase("Chrome")) {
+            ChromeOptions chromeOptions = new ChromeOptions();
+            if (isHeadless) {
+                chromeOptions.addArguments("--headless=new");
+            }
+            driver.set(new ChromeDriver(chromeOptions));
+
+        } else if (browserName.equalsIgnoreCase("Edge")) {
+            EdgeOptions edgeOptions = new EdgeOptions();
+            if (isHeadless) {
+                edgeOptions.addArguments("--headless=new");
+            }
+            driver.set(new EdgeDriver(edgeOptions));
+
+        } else if (browserName.equalsIgnoreCase("Firefox")) {
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+            if (isHeadless) {
+                firefoxOptions.addArguments("--headless=new");
+            }
+            driver.set(new FirefoxDriver(firefoxOptions));
+
+        } else {
+            throw new IllegalArgumentException("Unsupported browser: " + browserName);
         }
-    
-        driver.get().get((ParseJson.getBaseUrl(env)));
+
+        driver.get().get(ParseJson.getBaseUrl(env));
         driver.get().manage().window().maximize();
         driver.get().manage().deleteAllCookies();
         driver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));

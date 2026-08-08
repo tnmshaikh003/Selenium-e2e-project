@@ -1,6 +1,7 @@
 {
+    "headless":"true",
     "defaultEnviroment": "prod",
-    "defaultBrowser":"Firefox",
+    "defaultBrowser":"edge",
     "environment": [
         {
             "name": "uat",

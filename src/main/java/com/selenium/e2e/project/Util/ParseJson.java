@@ -69,4 +69,19 @@ public class ParseJson{
       
     }
 
+      public static  boolean isHeadless(){
+
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            Config config = mapper.readValue(new File("Config/config.json"), Config.class);
+            return config.isHeadless();
+         
+        } catch (Exception e) {
+            System.out.println("problem in isHeadless method");
+            throw new RuntimeException(e);
+        
+        }
+      
+    }
+
 }
