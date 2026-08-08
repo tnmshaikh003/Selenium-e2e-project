@@ -1,10 +1,10 @@
-package com.selenium.e2e.project.Util;
+package com.selenium.e2e.project.HelperClass;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.util.List;
 
-public class ParseJson{
+public class ConfigReader{
 
     public static  String getEnvironment(){
 

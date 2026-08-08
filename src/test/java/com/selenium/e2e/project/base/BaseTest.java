@@ -14,8 +14,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.BeforeMethod;
 
-import com.selenium.e2e.project.Util.ParseJson;
-
+import com.selenium.e2e.project.HelperClass.ConfigReader;
 
 import org.testng.annotations.AfterMethod;
 
@@ -30,10 +29,10 @@ public class BaseTest {
 
     public BaseTest() throws IOException {
         prop = new Properties();
-        env = ParseJson.getEnvironment();
-        browserName = ParseJson.getDefaultBrowser();
-        isHeadless = ParseJson.isHeadless();
-        String testDataPath = ParseJson.getTestDataPath(env);
+        env = ConfigReader.getEnvironment();
+        browserName = ConfigReader.getDefaultBrowser();
+        isHeadless = ConfigReader.isHeadless();
+        String testDataPath = ConfigReader.getTestDataPath(env);
         // String
         FileInputStream ip = new FileInputStream(testDataPath);
         prop.load(ip);
@@ -68,7 +67,7 @@ public class BaseTest {
             throw new IllegalArgumentException("Unsupported browser: " + browserName);
         }
 
-        driver.get().get(ParseJson.getBaseUrl(env));
+        driver.get().get(ConfigReader.getBaseUrl(env));
         driver.get().manage().window().maximize();
         driver.get().manage().deleteAllCookies();
         driver.get().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));

@@ -1,4 +1,4 @@
-package com.selenium.e2e.project.Util;
+package com.selenium.e2e.project.HelperClass;
 
 public class Environment {
     private String name;
