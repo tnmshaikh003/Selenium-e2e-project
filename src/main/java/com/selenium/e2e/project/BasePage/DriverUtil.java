@@ -1,4 +1,4 @@
-package com.selenium.e2e.project.Util;
+package com.selenium.e2e.project.BasePage;
 
 import java.time.Duration;
 import java.util.List;
@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DriverUtil {
@@ -79,6 +80,18 @@ public class DriverUtil {
         }catch(Exception e){
             e.getMessage();
         }
+    }
+
+    public void selectByValue(WebElement wl,String value){
+        try{
+            wait = new WebDriverWait(driver,Duration.ofSeconds(TIMEOUT));
+            wait.until(ExpectedConditions.visibilityOf(wl));
+            Select select = new Select(wl);
+            select.selectByValue(value);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 }

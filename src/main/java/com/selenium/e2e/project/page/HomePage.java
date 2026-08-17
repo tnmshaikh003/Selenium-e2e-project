@@ -4,10 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
-
-
-import com.selenium.e2e.project.Util.DriverUtil;
+import com.selenium.e2e.project.BasePage.DriverUtil;
 
 
 
@@ -38,22 +35,12 @@ public class HomePage extends DriverUtil {
        return  headerText.isDisplayed();
     }
 
-    public void selectDropdown(){
-        try{
-        Select select = new Select(dropdown);
-        select.selectByValue("za");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+    public void selectFromDropdown(String value){
+       this.driverUtil.selectByValue(dropdown, value);
     }
 
     public void clickOnHamBtn(){
-        try {
-            hamburgerBtn.click();
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.getMessage();
-        }
+       this.driverUtil.click(hamburgerBtn);
     }
     public void clickOnAbt(){
        this. driverUtil.click(aboutLink);

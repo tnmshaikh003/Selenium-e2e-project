@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Automation Test Suite" thread-count="3" parallel="methods">
+    <listeners>
+        <listener class-name="com.selenium.e2e.project.Listener.TestNGListener"/>
+    </listeners>
     <test name="Login Tests">
         <classes>
             <class name="com.selenium.e2e.project.test.LoginTest" />

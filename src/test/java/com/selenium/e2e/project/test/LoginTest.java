@@ -10,9 +10,10 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.selenium.e2e.project.base.BaseTest;
+import com.selenium.e2e.project.Listener.ExtentManager;
 import com.selenium.e2e.project.page.LoginPage;
 
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
 
     private static final Logger logger = LogManager.getLogger(LoginTest.class);
 
@@ -20,19 +21,22 @@ public class LoginTest extends BaseTest{
         super();
     }
 
-
     @Test(description = "Login with valid credential")
     public void loginTest() {
         LoginPage lp = new LoginPage(driver.get());
         Assert.assertTrue(lp.navigateToSwagLab());
-        logger.log(Level.INFO,"Succesfully navigated to Swag lab");
+        logger.log(Level.INFO, "Succesfully navigated to Swag lab");
+        ExtentManager.getTest().info("Navigated to Swag lab");
         lp.enterUserName(prop.getProperty("userName"));
-        logger.log(Level.INFO,"Succesfully entered username");
+        logger.log(Level.INFO, "Succesfully entered username");
+        ExtentManager.getTest().info("Entered username");
         lp.enterPassword(prop.getProperty("password"));
-        logger.log(Level.INFO,"Succesfully entered password");
-       Assert.assertTrue( lp.clickOnLogIn().isHeaderDisplayed());
-       logger.log(Level.INFO,"Succesfully veried header text");
-        
+        logger.log(Level.INFO, "Succesfully entered password");
+        ExtentManager.getTest().info("Entered password");
+        Assert.assertTrue(lp.clickOnLogIn().isHeaderDisplayed());
+        logger.log(Level.INFO, "Succesfully veried header text");
+        ExtentManager.getTest().info("Verified header text");
+
     }
-   
+
 }

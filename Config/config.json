@@ -1,5 +1,5 @@
 {
-    "headless":"true",
+    "headless":false,
     "defaultEnviroment": "prod",
     "defaultBrowser":"edge",
     "environment": [
