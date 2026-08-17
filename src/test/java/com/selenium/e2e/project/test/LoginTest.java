@@ -35,7 +35,7 @@ public class LoginTest extends BaseTest {
         ExtentManager.getTest().info("Entered password");
         Assert.assertTrue(lp.clickOnLogIn().isHeaderDisplayed());
         logger.log(Level.INFO, "Succesfully veried header text");
-        ExtentManager.getTest().info("Verified header text");
+        ExtentManager.getTest().pass("Verified header text");
 
     }
 

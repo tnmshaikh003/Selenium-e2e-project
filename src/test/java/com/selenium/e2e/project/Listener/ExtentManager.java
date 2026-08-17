@@ -1,35 +1,48 @@
 package com.selenium.e2e.project.Listener;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-import java.io.File;
 
 public class ExtentManager {
 
     private static ExtentReports extent;
     private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
 
-    public static void init(String reportPath) {
-        ExtentSparkReporter spark = new ExtentSparkReporter(reportPath);
-        extent = new ExtentReports();
-        extent.attachReporter(spark);
-    }
 
-    public static void createTest(String name) {
-        if (extent == null) {
-            String defaultPath = System.getProperty("user.dir") + File.separator + "target" + File.separator + "extent-report" + File.separator + "ExtentReport.html";
-            init(defaultPath);
+    public static ExtentReports getReportInstance(){
+
+        if(extent ==null){
+            String timeStamp = new SimpleDateFormat("yyyy-MM-DD_HH-mm-ss").format(new Date());
+            String reportPath = "report/Extent_"+timeStamp+".html";
+            ExtentSparkReporter reporter = new ExtentSparkReporter(reportPath);
+            reporter.config().setDocumentTitle("Automation Report");
+            reporter.config().setReportName("Test Execution Report");
+           extent = new ExtentReports();
+           extent.attachReporter(reporter);
+
+;
         }
-        extentTest.set(extent.createTest(name));
+
+        
+
+
+        return extent;
     }
 
-    public static ExtentTest getTest() {
+    public static ExtentTest createTest(String testName){
+        ExtentTest test = getReportInstance().createTest(testName);
+        extentTest.set(test);
+        return test;
+    }
+
+    public static ExtentTest getTest(){
         return extentTest.get();
     }
 
-    public static void flush() {
-        if (extent != null) extent.flush();
-    }
 }

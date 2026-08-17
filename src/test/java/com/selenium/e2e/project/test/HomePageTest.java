@@ -25,7 +25,7 @@ public class HomePageTest extends BaseTest{
         HomePage hp = new HomePage(driver.get());
          LoginTest lt = new LoginTest();
         lt.loginTest();
-        hp.selectFromDropdown("za");
+        hp.selectFromDropdown(prop.getProperty("state"));
         logger.info("Value selected from dropdown?: "+"za");
         hp.clickOnHamBtn();
         hp.clickOnAbt();
